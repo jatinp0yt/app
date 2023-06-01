@@ -1,9 +1,13 @@
 import streamlit as st
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import FAISS
+
+def hf_token():
+    HUGGINGFACEHUB_API_TOKEN=st.text_input('enter your hf token :')
+    return HUGGINGFACEHUB_API_TOKEN
 
 def get_pdf_text(pdf_docs):
     text = ''
@@ -29,9 +33,9 @@ def get_vectorstore(text_chunks):
     return vectorstore
 
 def main():
-    load_dotenv()
+    # load_dotenv()
     st.set_page_config(page_title='MultiPDFchat',page_icon=':books:')
-
+    hf_token()
 #  sidebar
     with st.sidebar:
         st.header('Your Docs :books:')
